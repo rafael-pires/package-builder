@@ -1,0 +1,20 @@
+require './lib/packages'
+require 'json'
+
+RAKEDATA={}
+pkgDir=Dir.pwd
+
+def listdir(pkgDir)
+  Dir.entries("#{pkgDir}").select do
+    |entry| (entry =~/^package-/)
+  end
+end
+  
+listdir(pkgDir).each do |pkgName|
+  pkgPath = "#{pkgDir}/#{pkgName}"
+  json = File.read("#{pkgPath}/package.json")
+  RAKEDATA[pkgName] = JSON.parse(json, :symbolize_names => true )
+  pkgparams      = RAKEDATA[pkgName][:rpm]
+  Packages.new(pkgName, pkgparams)
+
+end

@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  pkgbld:
+    build: 
+     args:
+      ruby_version: 2.1.8
+      gemset_name: pkgbld
+     context: ./docker
+    image: xxx/rhel6.8:pkgbld
+    container_name: pkgbld
+    hostname: pkgbld
+    volumes:
+     - ./$PKGNAME:/package-builder/$PKGNAME
+     - ~/gpg:/root/gpg
+    #  - ./docker/lib/:/package-builder/lib # "develop mode"
+    working_dir: /package-builder/
+#    tty: true
+    stdin_open: true
+    command: bash -l -c rake

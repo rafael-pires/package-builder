@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+
+#ruby=ruby-2.1.8
+#ruby-gemset=pkgbld
+
+gem 'fpm'
+gem 'rake'
+gem 'systemu'
+gem 'ohai'
+gem 'ruby_expect'
+gem 'hammer_cli', '= 0.5.1'
+gem 'hammer_cli_foreman', '= 0.5.1'
+gem 'hammer_cli_katello', '= 0.0.22'
